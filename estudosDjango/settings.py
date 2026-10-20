@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'questoes.imc',
     'questoes.catalogoLivros',
+    'questoes.controleDespesas',
 ]
 
 MIDDLEWARE = [

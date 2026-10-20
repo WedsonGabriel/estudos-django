@@ -1,0 +1,110 @@
+<style>
+    .area-form:has(table) {
+        max-width: 900px;
+    }
+
+    #mensagem-retorno:has(table) {
+        padding: 0;
+        background: none;
+        border: none;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        margin: 1rem 0 0;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(59, 15, 122, 0.25);
+        overflow: hidden;
+        font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+        font-weight: 400;
+        text-align: left;
+        color: #2e2a3d;
+    }
+
+    thead th {
+        padding: 1rem;
+        text-align: left;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #ffffff;
+        background: linear-gradient(135deg, #8b5cf6 0%, #5b21b6 100%);
+    }
+
+    tbody td {
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid #ede9fe;
+    }
+
+    tbody tr:nth-child(even) {
+        background: #f8f5ff;
+    }
+
+    tbody tr:hover {
+        background: #ede9fe;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    td:only-child {
+        text-align: center;
+        color: #6b6585;
+        padding: 2rem 1rem;
+    }
+
+    td span {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+        color: #5b21b6;
+        background: #ede9fe;
+        border: 1px solid #a78bfa;
+        border-radius: 999px;
+    }
+
+    @media (max-width: 700px) {
+        table {
+            min-width: 600px;
+        }
+    }
+</style>
+
+<table>
+    <thead>
+        <th>Descrição</th>
+        <th>Categoria</th>
+        <th>Valor</th>
+        <th>Data</th>
+        <th>Pagamento</th>
+    </thead>
+
+    <tbody>
+        {% for despesa in despesas %}
+            <tr>
+                <td> {{despesa.descricao}} </td>
+                <td> {{despesa.categoria}} </td>
+                <td> R$ {{despesa.valor}} </td>
+                <td> {{despesa.data}} </td>
+                <td> 
+                    {% if despesa.pago %}
+                        <span>Pago</span>
+                    {% else %}
+                        <span>Não pago</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">Nenhuma despesa cadastrada ainda</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

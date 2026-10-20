@@ -1,0 +1,438 @@
+/* ==========================================================================
+   CONTROLE DE DESPESAS — FOLHA DE ESTILO
+   Tema: Branco e Roxo
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIÁVEIS (ROOT) — PALETA DE CORES E TOKENS DE DESIGN
+   ========================================================================== */
+:root {
+
+    /* ---------- CORES PRINCIPAIS (ROXO) ---------- */
+
+    /* Roxo principal da marca: usado em botões primários, títulos e destaques */
+    --cor-roxo-principal: #7c3aed;
+
+    /* Roxo escuro: usado no estado "hover" (mouse sobre) de botões e em textos de ênfase */
+    --cor-roxo-escuro: #5b21b6;
+
+    /* Roxo muito escuro: usado em rótulos (labels) e textos de alto contraste */
+    --cor-roxo-profundo: #3b0f7a;
+
+    /* Roxo claro: usado em bordas, detalhes e no foco dos campos */
+    --cor-roxo-claro: #a78bfa;
+
+    /* Roxo suave: usado em fundos sutis, hover de botões secundários e sombras */
+    --cor-roxo-suave: #ede9fe;
+
+    /* Roxo quase branco: usado como fundo de campos de formulário */
+    --cor-roxo-gelo: #f8f5ff;
+
+
+    /* ---------- CORES NEUTRAS (BRANCO E CINZAS) ---------- */
+
+    /* Branco puro: fundo do cartão do formulário e texto sobre botões roxos */
+    --cor-branco: #ffffff;
+
+    /* Cinza arroxeado claro: usado em bordas discretas dos campos */
+    --cor-borda: #ddd6fe;
+
+    /* Cinza arroxeado médio: usado em textos secundários e placeholders */
+    --cor-texto-suave: #6b6585;
+
+    /* Cinza escuro arroxeado: cor padrão do texto do corpo da página */
+    --cor-texto: #2e2a3d;
+
+
+    /* ---------- CORES DE FEEDBACK (MENSAGENS) ---------- */
+
+    /* Verde de sucesso: texto da mensagem de retorno positiva */
+    --cor-sucesso: #15803d;
+
+    /* Fundo verde claro: fundo da mensagem de sucesso */
+    --cor-sucesso-fundo: #dcfce7;
+
+    /* Vermelho de erro: texto da mensagem de retorno negativa */
+    --cor-erro: #b91c1c;
+
+    /* Fundo vermelho claro: fundo da mensagem de erro */
+    --cor-erro-fundo: #fee2e2;
+
+
+    /* ---------- GRADIENTES ---------- */
+
+    /* Gradiente de fundo da página: do roxo escuro ao roxo principal */
+    --gradiente-fundo: linear-gradient(135deg, #3b0f7a 0%, #7c3aed 55%, #a78bfa 100%);
+
+    /* Gradiente dos botões primários */
+    --gradiente-botao: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+
+    /* Gradiente da faixa decorativa no topo do cartão */
+    --gradiente-faixa: linear-gradient(90deg, #a78bfa, #7c3aed, #5b21b6);
+
+
+    /* ---------- SOMBRAS ---------- */
+
+    /* Sombra do cartão principal */
+    --sombra-cartao: 0 20px 50px rgba(59, 15, 122, 0.35);
+
+    /* Sombra dos botões */
+    --sombra-botao: 0 6px 16px rgba(124, 58, 237, 0.35);
+
+    /* Anel de foco dos campos (acessibilidade) */
+    --sombra-foco: 0 0 0 4px rgba(167, 139, 250, 0.35);
+
+
+    /* ---------- TIPOGRAFIA ---------- */
+
+    /* Fonte padrão do sistema, com alternativas seguras */
+    --fonte-principal: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+
+    /* ---------- ESPAÇAMENTOS ---------- */
+    --espaco-xs: 0.4rem;
+    --espaco-sm: 0.75rem;
+    --espaco-md: 1.25rem;
+    --espaco-lg: 2rem;
+    --espaco-xl: 2.75rem;
+
+
+    /* ---------- BORDAS ARREDONDADAS ---------- */
+    --raio-sm: 8px;
+    --raio-md: 12px;
+    --raio-lg: 20px;
+
+
+    /* ---------- TRANSIÇÕES ---------- */
+    --transicao: 0.25s ease;
+}
+
+
+/* ==========================================================================
+   2. RESET E ESTILOS BASE
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto);
+    line-height: 1.5;
+    background: var(--gradiente-fundo);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* ==========================================================================
+   3. LAYOUT — CONTAINER E ÁREA DO FORMULÁRIO
+   ========================================================================== */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--espaco-md);
+}
+
+.area-form {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: var(--espaco-xl) var(--espaco-lg) var(--espaco-lg);
+    background-color: var(--cor-branco);
+    border-radius: var(--raio-lg);
+    box-shadow: var(--sombra-cartao);
+    overflow: hidden;
+}
+
+/* Faixa decorativa no topo do cartão */
+.area-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--gradiente-faixa);
+}
+
+/* Título do cartão (gerado via CSS, sem alterar o HTML) */
+.area-form::after {
+    content: "Controle de Despesas";
+    order: -1;
+    display: block;
+    position: absolute;
+    top: 1.1rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--cor-roxo-escuro);
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-md);
+    margin-top: var(--espaco-md);
+}
+
+
+/* ==========================================================================
+   4. CAMPOS DO FORMULÁRIO
+   ========================================================================== */
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-xs);
+}
+
+.input label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--cor-roxo-profundo);
+    letter-spacing: 0.3px;
+}
+
+.input input[type="text"],
+.input input[type="number"],
+.input input[type="date"],
+.input textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-roxo-gelo);
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-md);
+    outline: none;
+    transition: border-color var(--transicao),
+                box-shadow var(--transicao),
+                background-color var(--transicao);
+}
+
+.input textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.input input::placeholder,
+.input textarea::placeholder {
+    color: var(--cor-texto-suave);
+}
+
+.input input:hover,
+.input textarea:hover {
+    border-color: var(--cor-roxo-claro);
+}
+
+.input input:focus,
+.input textarea:focus {
+    background-color: var(--cor-branco);
+    border-color: var(--cor-roxo-principal);
+    box-shadow: var(--sombra-foco);
+}
+
+/* Ícone do calendário na cor do tema */
+.input input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity var(--transicao);
+}
+
+.input input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+
+/* ==========================================================================
+   5. CHECKBOX "PAGO?"
+   ========================================================================== */
+.input:has(input[type="checkbox"]) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background-color: var(--cor-roxo-gelo);
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-md);
+}
+
+.input input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    background-color: var(--cor-branco);
+    border: 2px solid var(--cor-roxo-claro);
+    border-radius: 8px;
+    transition: background-color var(--transicao),
+                border-color var(--transicao),
+                box-shadow var(--transicao);
+}
+
+.input input[type="checkbox"]:hover {
+    border-color: var(--cor-roxo-principal);
+}
+
+.input input[type="checkbox"]:focus-visible {
+    outline: none;
+    box-shadow: var(--sombra-foco);
+}
+
+.input input[type="checkbox"]:checked {
+    background: var(--gradiente-botao);
+    border-color: var(--cor-roxo-escuro);
+}
+
+/* Marca de "check" desenhada com CSS */
+.input input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--cor-branco);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+
+/* ==========================================================================
+   6. BOTÕES
+   ========================================================================== */
+
+/* Estilo compartilhado entre os botões */
+.submit-button,
+.show-button,
+.formulario button[type="button"] {
+    width: 100%;
+    padding: 0.9rem 1.25rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    border-radius: var(--raio-md);
+    transition: transform var(--transicao),
+                box-shadow var(--transicao),
+                background var(--transicao),
+                color var(--transicao);
+}
+
+/* Botão primário: Cadastrar */
+.submit-button {
+    color: var(--cor-branco);
+    background: var(--gradiente-botao);
+    border: none;
+    box-shadow: var(--sombra-botao);
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(124, 58, 237, 0.45);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+    box-shadow: var(--sombra-botao);
+}
+
+/* Botão secundário: Mostrar Despesas
+   (o HTML possui dois atributos class; o navegador usa o primeiro, que está vazio,
+   por isso o seletor também cobre button[type="button"] dentro do formulário) */
+.show-button,
+.formulario button[type="button"] {
+    color: var(--cor-roxo-principal);
+    background-color: var(--cor-branco);
+    border: 2px solid var(--cor-roxo-principal);
+}
+
+.show-button:hover,
+.formulario button[type="button"]:hover {
+    color: var(--cor-branco);
+    background-color: var(--cor-roxo-principal);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-botao);
+}
+
+.show-button:active,
+.formulario button[type="button"]:active {
+    transform: translateY(0);
+}
+
+.submit-button:focus-visible,
+.show-button:focus-visible,
+.formulario button[type="button"]:focus-visible {
+    outline: none;
+    box-shadow: var(--sombra-foco);
+}
+
+
+/* ==========================================================================
+   7. MENSAGEM DE RETORNO (HTMX)
+   ========================================================================== */
+#mensagem-retorno {
+    margin-top: var(--espaco-md);
+    text-align: center;
+    font-weight: 600;
+    border-radius: var(--raio-md);
+}
+
+/* Só ganha aparência quando houver conteúdo */
+#mensagem-retorno:not(:empty) {
+    padding: 0.85rem 1rem;
+    color: var(--cor-roxo-escuro);
+    background-color: var(--cor-roxo-suave);
+    border: 1px solid var(--cor-roxo-claro);
+}
+
+#mensagem-retorno.sucesso {
+    color: var(--cor-sucesso);
+    background-color: var(--cor-sucesso-fundo);
+    border-color: var(--cor-sucesso);
+}
+
+#mensagem-retorno.erro {
+    color: var(--cor-erro);
+    background-color: var(--cor-erro-fundo);
+    border-color: var(--cor-erro);
+}
+
+
+/* ==========================================================================
+   8. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 520px) {
+    .container {
+        padding: var(--espaco-sm);
+    }
+
+    .area-form {
+        padding: 3.5rem var(--espaco-md) var(--espaco-md);
+        border-radius: var(--raio-md);
+    }
+
+    .area-form::after {
+        font-size: 1.15rem;
+    }
+}
