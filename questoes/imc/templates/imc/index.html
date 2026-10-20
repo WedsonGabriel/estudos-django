@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> IMC </title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'imc/css/style.css' %}">
+    <script src="{% static 'imc/js/script.js' %}" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="pagina_imc">
+            <h1 class="titulo_pagina">Calculadora de IMC</h1>
+            <p class="descricao_pagina">Consulte a sua classificação corporal de acordo com a sua altura e peso</p>
+        </div>
+        
+        <div class="form_area">
+            <form method="post" action="{% url 'imc:calculadora_imc' %}" onsubmit="bloquearRecarregamento(event)">
+                {%csrf_token%}
+                <div class="grupo_input">
+                    <div class="input">
+                        <label for="altura" class="input_label">Altura</label>
+                        <input type="number" name="altura" id="altura" step="0.01" placeholder="Ex.: 1.80" class="campo_input" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="altura" class="input_label">Peso</label>
+                        <input type="number" name="peso" id="peso" step="0.01" placeholder="Ex.: 75.4" class="campo_input" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit_imc">Verificar IMC</button>
+                
+            </form>
+
+            <hr class="linha_separadora" style="display: none;">
+                <div id="area_resultado">
+
+                </div>
+            <a href="" class="repetir_calculo" style="display: none;">Calcular novamente</a>
+
+            <!--
+            <div class="resposta_imc {{ calculo|slugify }}">
+                <h3 class="titulo_resultado"> Classificação </h3>
+                <p class="descricao_resultado"> {{calculo}} </p>
+            </div>
+            <a href="{% url 'imc:calculadora_imc' %}" class="repetir_calculo">Calcular novamente</a>
+            -->
+            
+        </div>
+    </div>
+</body>
+</html>

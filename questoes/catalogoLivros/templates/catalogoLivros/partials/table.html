@@ -1,0 +1,40 @@
+<style>
+    th, td {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+
+<table border="1" style="margin: 0 auto; width: 50%; border-collapse: collapse; table-layout: fixed;">
+    <thead>
+        <tr>
+            <th style="background-color: #8b5cf6; color: white; padding: 12px 15px; text-align: center;">Título</th>
+            <th style="background-color: #8b5cf6; color: white; padding: 12px 15px; text-align: center;">Autor</th>
+            <th style="background-color: #8b5cf6; color: white; padding: 12px 15px; text-align: center;">Ano</th>
+            <th style="background-color: #8b5cf6; color: white; padding: 12px 15px; text-align: center;">Gênero</th>
+            <th style="background-color: #8b5cf6; color: white; padding: 12px 15px; text-align: center;">Disponibilidade</th>
+        </tr>
+    </thead>
+
+    <tbody id="corpo-tabela">
+        {% for livro in livros %}
+            <tr>
+                <td style="padding: 12px 15px; border: 1px solid #555;">{{livro.titulo}}</td>
+                <td style="padding: 12px 15px; border: 1px solid #555;">{{livro.autor}}</td>
+                <td style="padding: 12px 15px; border: 1px solid #555;">{{livro.ano}}</td>
+                <td style="padding: 12px 15px; border: 1px solid #555;">{{livro.genero}}</td>
+                <td style="padding: 12px 15px; border: 1px solid #555; text-align: center;">
+                    {% if livro.status %}
+                        <span style="color: white;">Disponível</span>
+                    {% else %}
+                        <span style="color: white;">Indisponível</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% empty %}
+            <tr id="linha-vazia">
+                <td colspan="5" style="color: #e5e5e5; text-align: center; padding: 20px;"> Nenhum livro cadastrado </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
